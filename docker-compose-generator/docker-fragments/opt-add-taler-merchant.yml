@@ -10,11 +10,6 @@ services:
       TALER_MERCHANT_DB_USER: postgres
       TALER_MERCHANT_DB_PASSWORD: ""
       TALER_MERCHANT_DB_NAME: talermerchant${NBITCOIN_NETWORK:-regtest}
-    labels:
-      traefik.enable: "true"
-      traefik.http.routers.taler-merchant.rule: Host(`${BTCPAY_HOST}`) && PathPrefix(`/taler-merchant/`)
-      traefik.http.routers.taler-merchant.middlewares: taler-merchant-stripprefix
-      traefik.http.middlewares.taler-merchant-stripprefix.stripprefix.prefixes: /taler-merchant
     expose:
       - "9966"
     links:
